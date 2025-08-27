@@ -16,8 +16,8 @@ internal static class WeatherForecastEndpoints
                     new WeatherForecast
                     (
                         DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                        Random.Shared.Next(-20, 55),
-                        Summaries[Random.Shared.Next(Summaries.Length)]
+                        Summaries[Random.Shared.Next(Summaries.Length)],
+                        Random.Shared.Next(-20, 55)
                     ));
                 return forecast;
             })
@@ -29,15 +29,6 @@ internal static class WeatherForecastEndpoints
 /// Represents a weather forecast for a specific date.
 /// </summary>
 /// <param name="Date">The date of the &lt;b&gt;weather forecast&lt;/b&gt;.</param>
+/// <param name="Summary">A brief description of the weather <b>conditions</b>.</param>
 /// <param name="TemperatureC">The temperature in <![CDATA[ <b>Celcius</b> ]]>.</param>
-/// <param name="Summary">A brief description of the weather conditions.</param>
-public record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    /// <summary>
-    /// Gets the temperature in Fahrenheit.
-    /// </summary>
-    /// <value>
-    /// The temperature converted from Celsius to Fahrenheit using the formula: F = 32 + (C / 0.5556)
-    /// </value>
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+public record WeatherForecast(DateOnly Date, string? Summary, int TemperatureC);
